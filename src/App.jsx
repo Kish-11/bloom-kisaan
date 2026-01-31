@@ -3,14 +3,17 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import FarmerLoginPage from "./components/LoginComponents/farmerLoginPage.jsx";
+import FarmerSignUp from "./components/SignUpComponents/farmerSignUp.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="App">
-      <FarmerLoginPage />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<FarmerLoginPage />}></Route>
+        <Route path="/signup" element={<FarmerSignUp />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
