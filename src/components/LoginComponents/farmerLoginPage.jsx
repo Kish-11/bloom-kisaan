@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 export default function FarmerLoginPage() {
   const [username, setUsername] = useState("");
@@ -14,6 +15,9 @@ export default function FarmerLoginPage() {
   const handleSignUp = () => {
     navigate("/signup");
     //console.log("Printing the check");
+  };
+  const handleTest = () => {
+    navigate("/main");
   };
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50 to-orange-50">
@@ -32,6 +36,11 @@ export default function FarmerLoginPage() {
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        <Button type="contained" onClick={handleTest}>
+          Test
+        </Button>
       </div>
 
       {/* Main Content */}

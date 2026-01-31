@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { signUp } from "../../services/authService";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function FarmerSignUp() {
   const [formData, setFormData] = useState({
@@ -11,7 +13,7 @@ export default function FarmerSignUp() {
     confirmPassword: "",
     userType: "farmer", // farmer or buyer
   });
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -21,10 +23,14 @@ export default function FarmerSignUp() {
   const createAccount = async () => {
     try {
       const response = await signUp(formData);
-      console.log("SignUp success", response);
-      alert("SignUp successful");
+      if (response.status === 200) {
+        console.log("SignUp successful");
+        alert("SignUp successfull please login");
+        navigate("/");
+      }
     } catch (error) {
       console.log(error);
+      alert("SignUp unsuccessful");
     }
   };
 
@@ -44,7 +50,7 @@ export default function FarmerSignUp() {
   };
 
   const goToLogin = () => {
-    window.location.href = "/";
+    navigate("/");
   };
 
   return (
