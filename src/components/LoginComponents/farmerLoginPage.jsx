@@ -1,15 +1,20 @@
 import React, { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function FarmerLoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
     console.log("Login attempted with:", { username, password });
     // Add your login logic here
   };
-
+  const handleSignUp = () => {
+    navigate("/signup");
+    //console.log("Printing the check");
+  };
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50 to-orange-50">
       {/* Header Logo */}
@@ -86,12 +91,22 @@ export default function FarmerLoginPage() {
                     />
                   </div>
 
-                  <button
-                    type="submit"
-                    className="w-full bg-green-700 hover:bg-green-800 text-white font-semibold py-3 rounded-lg transition-colors shadow-md"
-                  >
-                    Login
-                  </button>
+                  <div className="space-y-3">
+                    <button
+                      type="submit"
+                      className="w-full bg-green-700 hover:bg-green-800 text-white font-semibold py-3 rounded-lg transition-colors shadow-md"
+                    >
+                      Login
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={handleSignUp}
+                      className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition-colors shadow-md"
+                    >
+                      Sign Up
+                    </button>
+                  </div>
 
                   <div className="text-center">
                     <a
