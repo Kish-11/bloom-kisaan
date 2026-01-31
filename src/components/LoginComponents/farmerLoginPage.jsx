@@ -12,7 +12,8 @@ export default function FarmerLoginPage() {
   });
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     try {
       console.log("handle login has been called");
       const response = await logIn(logInDetails);
@@ -90,7 +91,7 @@ export default function FarmerLoginPage() {
                   </span>
                 </p>
 
-                <form onSubmit={handleLogin} className="space-y-6">
+                <form className="space-y-6">
                   <div className="flex items-center gap-3">
                     <span className="text-gray-400 text-2xl">👤</span>
                     <input
@@ -128,7 +129,8 @@ export default function FarmerLoginPage() {
 
                   <div className="space-y-3">
                     <button
-                      type="submit"
+                      type="button"
+                      onClick={handleLogin}
                       className="w-full bg-green-700 hover:bg-green-800 text-white font-semibold py-3 rounded-lg transition-colors shadow-md"
                     >
                       Login
