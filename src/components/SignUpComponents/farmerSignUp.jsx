@@ -7,8 +7,8 @@ export default function FarmerSignUp() {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
-    phone: "",
-    username: "",
+    phoneNumber: "",
+    userName: "",
     password: "",
     confirmPassword: "",
     userType: "farmer", // farmer or buyer
@@ -26,7 +26,7 @@ export default function FarmerSignUp() {
       if (response.status === 200) {
         console.log("SignUp successful");
         alert("SignUp successfull please login");
-        navigate("/");
+        navigateavigate("/");
       }
     } catch (error) {
       console.log(error);
@@ -149,32 +149,32 @@ export default function FarmerSignUp() {
                 />
               </div>
 
-              {/* Phone */}
+              {/* phoneNumber */}
               <div>
                 <label className="block text-gray-700 font-medium mb-2">
                   Phone Number
                 </label>
                 <input
                   type="tel"
-                  name="phone"
+                  name="phoneNumber"
                   placeholder="+91 1234567890"
-                  value={formData.phone}
+                  value={formData.phoneNumber}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none transition-colors"
                   required
                 />
               </div>
 
-              {/* Username */}
+              {/* userName */}
               <div>
                 <label className="block text-gray-700 font-medium mb-2">
                   Username
                 </label>
                 <input
                   type="text"
-                  name="username"
-                  placeholder="Choose a username"
-                  value={formData.username}
+                  name="userName"
+                  placeholder="Choose a Username"
+                  value={formData.userName}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none transition-colors"
                   required
@@ -241,14 +241,6 @@ export default function FarmerSignUp() {
       </div>
 
       {/* Footer */}
-      <div className="bg-green-800 text-white py-6">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="text-sm">
-            © 2026 BloomKisan. All rights reserved. Empowering farmers,
-            connecting markets.
-          </p>
-        </div>
-      </div>
     </div>
   );
 }
