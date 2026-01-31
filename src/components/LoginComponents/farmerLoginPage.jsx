@@ -1,15 +1,29 @@
 import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
+import { logIn } from "../../services/authService";
 
 export default function FarmerLoginPage() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  const [logInDetails, setLogInDetails] = useState({
+    email: "",
+    password: "",
+  });
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    console.log("Login attempted with:", { username, password });
+  const handleLogin = async () => {
+    try {
+      console.log("handle login has been called");
+      const response = await logIn(logInDetails);
+      if (response.status === 200) {
+        console.log("Login successful");
+        navigate("/main");
+      }
+    } catch (error) {
+      console.log("Login failed", error);
+    }
+
     // Add your login logic here
   };
   const handleSignUp = () => {
@@ -81,9 +95,15 @@ export default function FarmerLoginPage() {
                     <span className="text-gray-400 text-2xl">👤</span>
                     <input
                       type="text"
-                      placeholder="Username"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
+                      name="email"
+                      placeholder="Email"
+                      value={logInDetails.email}
+                      onChange={(e) =>
+                        setLogInDetails({
+                          ...logInDetails,
+                          [e.target.name]: e.target.value,
+                        })
+                      }
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none transition-colors"
                       required
                     />
@@ -92,9 +112,15 @@ export default function FarmerLoginPage() {
                     <span className="text-gray-400 text-2xl">🔒</span>
                     <input
                       type="password"
+                      name="password"
                       placeholder="Password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      value={logInDetails.password}
+                      onChange={(e) =>
+                        setLogInDetails({
+                          ...logInDetails,
+                          [e.target.name]: e.target.value,
+                        })
+                      }
                       className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none transition-colors"
                       required
                     />
